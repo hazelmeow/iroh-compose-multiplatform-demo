@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.composeHotReload)
 
     id("dev.gobley.cargo") version "0.2.0"
+    id("dev.gobley.rust") version "0.2.0"
     id("dev.gobley.uniffi") version "0.2.0"
     kotlin("plugin.atomicfu") version libs.versions.kotlin
 }
@@ -53,6 +54,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

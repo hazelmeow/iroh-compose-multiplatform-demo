@@ -1,5 +1,7 @@
 package com.example.irohcomposemultiplatform
 
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.ClipEntry
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {
@@ -7,3 +9,6 @@ class IOSPlatform: Platform {
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()
+
+@OptIn(ExperimentalComposeUiApi::class)
+actual fun toClipEntry(string: String): ClipEntry = ClipEntry.withPlainText(string)

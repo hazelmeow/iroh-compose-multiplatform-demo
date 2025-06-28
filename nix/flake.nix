@@ -49,7 +49,6 @@
 
           nativeBuildInputs = [
             rustToolchain
-            pkgs.just
           ];
           buildInputs = [
             # pkgs.jdk
