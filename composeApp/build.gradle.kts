@@ -1,6 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import gobley.gradle.GobleyHost
+import gobley.gradle.cargo.dsl.*
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,6 +10,10 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+
+    id("dev.gobley.cargo") version "0.2.0"
+    id("dev.gobley.uniffi") version "0.2.0"
+    kotlin("plugin.atomicfu") version libs.versions.kotlin
 }
 
 kotlin {
@@ -98,5 +104,23 @@ compose.desktop {
             packageName = "com.example.irohcomposemultiplatform"
             packageVersion = "1.0.0"
         }
+    }
+}
+
+// HACK: disable rustup target add tasks
+project.gradle.taskGraph.whenReady {
+    project.tasks.forEach { task ->
+        if (task.name.contains("rustUpTargetAdd")) {
+            task.enabled = false
+        }
+    }
+}
+
+cargo {
+    packageDirectory = layout.projectDirectory.dir("../crates/iroh-compose")
+
+    // build desktop for the host target only
+    builds.jvm {
+        embedRustLibrary = (rustTarget == GobleyHost.current.rustTarget)
     }
 }

@@ -39,6 +39,16 @@ fun App() {
                     Text("Compose: $greeting")
                 }
             }
+
+            Text("Addition using Rust: 2 + 3 = ${uniffi.irohcompose.add(2, 3)}")
+            val greeting = remember { uniffi.irohcompose.Greeter("Hello") }
+            Text(greeting.greet("Rust"))
+
+            DisposableEffect(greeting) {
+                onDispose {
+                    greeting.close()
+                }
+            }
         }
     }
 }
