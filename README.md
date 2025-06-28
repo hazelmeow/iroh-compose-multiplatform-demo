@@ -1,14 +1,17 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
+# Iroh Compose Multiplatform Demo
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+This is a demo of a cross-platform app with shared core logic using Rust and [Iroh](https://www.iroh.computer/) and shared UI using [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform/).
+The UI and Rust logic communicate using [UniFFI](https://mozilla.github.io/uniffi-rs/latest/), with bindings for Kotlin Multiplatform handled by [Gobley](https://gobley.dev/).
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Android and desktop work, I haven't tested with iOS yet.
 
+I've been using Android Studio for building the Android app, and IDEA for building the desktop app.
+You will also need a Rust toolchain with additional targets installled for the targets you're building for (the Android and iOS targets).
+Gradle/Gobley are currently configured to only build desktop for the host target.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+NixOS: I'm letting Android Studio/IDEA manage the JDK and Android SDK.
+The flake in `nix/` installs a Rust toolchain since I don't have one installed globally.
+I launch `android-studio .` or `idea-community .` inside the repository root so that `cargo` is in the path.
+I also had to disable some tasks from Gobley which call `rustup` to install required targets, but my install doesn't use rustup.
+
+There is also a Cargo example (`cargo run --example headless`) that starts a node running the same echo protocol as the app for testing.
