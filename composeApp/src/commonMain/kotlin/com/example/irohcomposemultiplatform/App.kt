@@ -68,7 +68,7 @@ fun App() {
 
 @Composable
 fun Status(
-    viewModel: CoreViewModel = viewModel(),
+    viewModel: CoreViewModel = viewModel { CoreViewModel() },
 ) {
     val state by viewModel.state.collectAsState()
 
