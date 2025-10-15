@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D16D43892E9F25890079E83C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16D43882E9F25880079E83C /* SystemConfiguration.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B9DA97B12DC1472C00A4DA20 /* Iroh Compose Multiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Iroh Compose Multiplatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D16D43882E9F25880079E83C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -41,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D16D43892E9F25890079E83C /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +58,7 @@
 			children = (
 				B9DA98002DC14AA900A4DA20 /* Configuration */,
 				B9DA97B32DC1472C00A4DA20 /* iosApp */,
+				D16D43872E9F25880079E83C /* Frameworks */,
 				B9DA97B22DC1472C00A4DA20 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +69,14 @@
 				B9DA97B12DC1472C00A4DA20 /* Iroh Compose Multiplatform.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D16D43872E9F25880079E83C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D16D43882E9F25880079E83C /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
