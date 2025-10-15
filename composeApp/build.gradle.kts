@@ -11,9 +11,9 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
 
-    id("dev.gobley.cargo") version "0.2.0"
-    id("dev.gobley.rust") version "0.2.0"
-    id("dev.gobley.uniffi") version "0.2.0"
+    id("dev.gobley.cargo") version "0.3.7"
+    id("dev.gobley.rust") version "0.3.7"
+    id("dev.gobley.uniffi") version "0.3.7"
     kotlin("plugin.atomicfu") version libs.versions.kotlin
 }
 
@@ -109,17 +109,10 @@ compose.desktop {
     }
 }
 
-// HACK: disable rustup target add tasks
-project.gradle.taskGraph.whenReady {
-    project.tasks.forEach { task ->
-        if (task.name.contains("rustUpTargetAdd")) {
-            task.enabled = false
-        }
-    }
-}
-
 cargo {
     packageDirectory = layout.projectDirectory.dir("../crates/iroh-compose")
+
+    installTargetBeforeBuild = false
 
     // build desktop for the host target only
     builds.jvm {
