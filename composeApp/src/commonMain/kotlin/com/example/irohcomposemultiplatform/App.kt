@@ -173,7 +173,7 @@ private fun StatusDetail(
 
 @Composable
 fun Inputs(
-    viewModel: CoreViewModel = viewModel(),
+    viewModel: CoreViewModel = viewModel { CoreViewModel() },
 ) {
     var nodeIdInput by remember { mutableStateOf("") }
     var textInput by remember { mutableStateOf("") }
